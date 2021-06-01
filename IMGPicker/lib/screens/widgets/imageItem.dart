@@ -46,7 +46,7 @@ class _ImageItemState extends State<ImageItem> {
                       context,
                       MaterialPageRoute(
                         builder: (context) =>
-                            ImageView(src: (widget.images[index].files[0])),
+                            ImageView(src: (widget.images[index])),
                       ),
                     );
                   });
