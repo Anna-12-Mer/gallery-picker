@@ -1,5 +1,5 @@
 class ImageModel {
-  List<String> files;
+  List<dynamic> files;
   String folderName;
 
   ImageModel({this.files, this.folderName});

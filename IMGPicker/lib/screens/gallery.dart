@@ -1,10 +1,10 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:IMGPicker/screens/widgets/imageItem.dart';
 import 'package:transparent_image/transparent_image.dart';
 
 import 'package:IMGPicker/models/imageModel.dart';
-import 'package:IMGPicker/screens/widgets/imageView.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:storage_path/storage_path.dart';
@@ -22,7 +22,7 @@ class _GalleryState extends State<Gallery> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          ' Images From Gallery',
+          'Images From Gallery',
           style: TextStyle(
               color: Colors.white, fontSize: 18, fontFamily: 'Regular'),
         ),
@@ -49,26 +49,46 @@ class _GalleryState extends State<Gallery> {
                     child: GestureDetector(
                       onTap: () {
                         setState(() {
-                          print(imageModel.files[0]);
                           Navigator.push(
                             context,
                             MaterialPageRoute(
                               builder: (context) =>
-                                  ImageView(src: (imageModel.files[0])),
+                                  ImageItem(images: imageModel.files),
                             ),
                           );
                         });
                       },
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(5.0),
-                        child: FadeInImage(
-                          image: FileImage(
-                            File(imageModel.files[0]),
-                          ),
-                          placeholder: MemoryImage(kTransparentImage),
-                          fit: BoxFit.cover,
-                          width: double.infinity,
-                          height: double.infinity,
+                        child: Stack(
+                          alignment: Alignment.bottomCenter,
+                          children: [
+                            FadeInImage(
+                              image: FileImage(
+                                File(imageModel.files[0]),
+                              ),
+                              placeholder: MemoryImage(kTransparentImage),
+                              fit: BoxFit.cover,
+                              width: double.infinity,
+                              height: double.infinity,
+                            ),
+                            Container(
+                              color: Colors.black.withOpacity(0.7),
+                              height: 30,
+                              width: double.infinity,
+                              child: Center(
+                                child: Text(
+                                  imageModel.folderName,
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 16,
+                                      fontFamily: 'Regular'),
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                     ),
