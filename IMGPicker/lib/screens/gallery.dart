@@ -100,7 +100,9 @@ class _GalleryState extends State<Gallery> {
               ),
             );
           } else {
-            return Container();
+            return Center(
+              child: Text('Loading...'),
+            );
           }
         },
       ),

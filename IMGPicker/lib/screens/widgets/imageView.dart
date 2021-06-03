@@ -3,11 +3,10 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:photo_view/photo_view.dart';
 
-// ignore: must_be_immutable
 class ImageView extends StatefulWidget {
-  String src;
+  final String src;
 
-  ImageView({this.src});
+  const ImageView({Key key, this.src}) : super(key: key);
 
   @override
   _ImageViewState createState() => _ImageViewState();
