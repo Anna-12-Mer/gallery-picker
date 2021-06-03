@@ -11,14 +11,14 @@ class ImageItem extends StatefulWidget {
 
   const ImageItem({Key key, this.images}) : super(key: key);
 
-
   @override
   _ImageItemState createState() => _ImageItemState();
 }
 
 class _ImageItemState extends State<ImageItem> {
   List<dynamic> images;
-  ScrollController _scrollController = ScrollController();
+  ScrollController _scrollController =
+      ScrollController(initialScrollOffset: 0.0, keepScrollOffset: true);
   int _currentMax = 5;
 
   @override
@@ -88,7 +88,8 @@ class _ImageItemState extends State<ImageItem> {
                           image: FileImage(
                             File(images[index]),
                           ),
-                          placeholder: MemoryImage(kTransparentImage),
+                          placeholder:
+                              MemoryImage(kTransparentImage, scale: 0.1),
                           fit: BoxFit.cover,
                           width: double.infinity,
                           height: double.infinity,
